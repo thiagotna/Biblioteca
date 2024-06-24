@@ -1,9 +1,11 @@
-import { Library } from "./src/entities/Library";
+import { Library } from "./src/entities/Library.js";
 
 export class App {
     public init(): void {
         const library = new Library()
 
-        library.getBookByName('Test')
+        //Getting all books
+        console.log(library.bookList())
+
     }
 }

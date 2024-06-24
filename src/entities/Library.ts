@@ -1,31 +1,39 @@
-import { Author } from './Author.js';
-import { Book } from './Book.js';
+import { IBook } from '../interfaces/IBook.js';
+import { LibraryService } from '../services/LirabryService.js';
 
 export class Library {
-    static bookList: Book[];
 
-    private addBook(book: Book): void {
-        const newBook = Book.createBook(
-            book.name, 
-            book.genre, 
-            book.author, 
-            book.publisher
-        )
-        const newBookAuthor = new Author(newBook.author)
-        newBookAuthor.addToAuthorCollection(newBook.name, newBook.genre, newBook.publisher)
+    private libraryService = new LibraryService()
+    private _bookList : IBook[] = []
+    
+    constructor(){
+        if (this._bookList.length < 1) {
+            this.libraryService.fetchLibrary()
+            .then( books  => books.forEach( book => {
+                this._bookList.push(book)
+            }))   
+            this.bookList()
+        } else {
+            console.log('A blioteca esta vazia!')
+        }
+    }
+    
+    public addBook(book: IBook): void{
+        this._bookList.push(book)
+        console.log(`${book.name} foi adicionado à biblioteca`)
+    }
 
-        Library.bookList.push()
-        console.log(`${newBook.name} foi adicionado a biblioteca!`)
+    public bookList(): IBook[]{
+        return this._bookList
     }
-    public getBookByName(bookName: string){
-        const foundBook = Library.bookList.filter( book => book.name === bookName )
 
-        console.log(foundBook)
+    public updateBook(id: number): void{
+        const foundBook = this._bookList.find( book => book.id === id)
+
+        
     }
-    private updateBook(id: number): Book {
-        throw new Error('Method not implemented.');
-    }
-    private deleteBook(id: number): void {
-        throw new Error('Method not implemented.');
+    
+    public deleteBook(id: number):void{
+
     }
 }
