@@ -9,7 +9,7 @@ export class Library {
     constructor(){
         if (this._bookList.length < 1) {
             this.libraryService.fetchLibrary()
-            .then( books  => books.forEach( book => {
+            .then( async books  => books.forEach( book => {
                 this._bookList.push(book)
             }))   
             this.bookList()
@@ -17,19 +17,21 @@ export class Library {
             console.log('A blioteca esta vazia!')
         }
     }
+
+    public bookList(): IBook[]{
+        return this._bookList
+    }
     
     public addBook(book: IBook): void{
         this._bookList.push(book)
         console.log(`${book.name} foi adicionado à biblioteca`)
     }
 
-    public bookList(): IBook[]{
-        return this._bookList
+    public getBook(id: number){
+        console.log(id)
     }
-
-    public updateBook(id: number): void{
-        const foundBook = this._bookList.find( book => book.id === id)
-
+    
+    public updateBook(id: number): void {
         
     }
     

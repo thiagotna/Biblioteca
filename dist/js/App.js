@@ -4,7 +4,7 @@ var App = (function () {
     }
     App.prototype.init = function () {
         var library = new Library();
-        console.log(library.bookList());
+        library.updateBook(1);
     };
     return App;
 }());

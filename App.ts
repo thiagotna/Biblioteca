@@ -4,8 +4,6 @@ export class App {
     public init(): void {
         const library = new Library()
 
-        //Getting all books
-        console.log(library.bookList())
-
+        library.updateBook(1)
     }
 }
