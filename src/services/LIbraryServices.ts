@@ -1,59 +1,53 @@
-export class LibraryServices {
+import IBook from "../interfaces/IBoook.js"
 
-    constructor(url: string){}
+export default class LibraryServices {
 
-    public async fetchData(url: string, method?: string) :  Promise<any>{
-        try {        
-            const response = await fetch(url , {
-                method: !method ? 'GET' : method,
-                mode: "cors",
-                headers:{
-                    "Content-type": "application/json"
-                }
-            })
-            if (!response.ok) {
-                throw new Error('Unable to retrieve data')
-            }
-            const data : any = await response.json()          
-            return data
-        } catch (error) {
-            console.error(error)
+    constructor(){}
+
+    public async fetchData(url: string, method: string = 'GET', body?: IBook): Promise<any> {
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: body ? JSON.stringify(body) : undefined
+        });
+
+        if (!response.ok) {
+            throw new Error('Unable to retrieve data');
         }
+        
+        const data = await response.json();
+        return data;
     }
 
-    public async getBook(url: string, id: string): Promise<any>{
-        try {
-            const book = this.fetchData(`${url}/${id}`)
-            
-            return book
-        } catch (error) {
-            console.error(error)
-        }
+    public async getBook(url: string, id: string): Promise<IBook>{       
+        const book = await this.fetchData(`${url}/${id}`)
+        
+        console.log(`${book.name} foi encontrado!`)
+
+        return book       
     }
 
-    public async createBook(url: string): Promise<any>{
-        try {
-            const newBook = this.fetchData(`${url}`, 'POST')
-            
-            console.log(`${newBook} foi adicionado à Biblioteca`)
-        } catch (error) {
-            console.error(error)
-        }
+    public async createBook(url: string, book: IBook): Promise<IBook>{
+        const newBook = await this.fetchData(`${url}`, 'POST', book);            
+        
+        console.log(`${newBook.name} foi adicionado à Biblioteca!`)    
+        console.log(newBook)    
+        return newBook
     }
 
-    public async updateBook(url: string, id: string): Promise<any>{
-        try {
-            const updatedBook = await this.fetchData(`${url}/${id}`, 'PUT')
-        } catch (error) {
-            console.log(error)
-        }
+    public async updateBook(url: string, id: string, updatedBookData: IBook): Promise<IBook>{
+        const updatedBook = await this.fetchData(`${url}/${id}`, 'PUT', updatedBookData)
+        
+        console.log(`${updatedBook.name} foi atualizado!`)     
+        return updatedBook        
     }
 
-    public async deleteBook(url: string, id: string): Promise<any>{
-        try {
-            const deletedBook = await this.fetchData(`${url}/id`)
-        } catch (error) {
-            
-        }
+    public async deleteBook(url: string, id: string): Promise<IBook>{        
+        const deletedBook = await this.fetchData(`${url}/${id}`, 'DELETE')
+        
+        console.log(`${deletedBook.name} foi removido da biblioteca!`)
+        return deletedBook
     }
 }
