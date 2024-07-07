@@ -14,7 +14,7 @@ export default class LibraryServices {
         });
 
         if (!response.ok) {
-            throw new Error('Unable to retrieve data');
+            throw new Error('Não foi possível processar os dados');
         }
         
         const data = await response.json();
@@ -40,14 +40,14 @@ export default class LibraryServices {
     public async updateBook(url: string, id: string, updatedBookData: IBook): Promise<IBook>{
         const updatedBook = await this.fetchData(`${url}/${id}`, 'PUT', updatedBookData)
         
-        console.log(`${updatedBook.name} foi atualizado!`)     
+        console.log(`Este livro foi atualizado!`)     
         return updatedBook        
     }
 
     public async deleteBook(url: string, id: string): Promise<IBook>{        
         const deletedBook = await this.fetchData(`${url}/${id}`, 'DELETE')
         
-        console.log(`${deletedBook.name} foi removido da biblioteca!`)
+        console.log(`Este livro foi removido da biblioteca!`)
         return deletedBook
     }
 }
