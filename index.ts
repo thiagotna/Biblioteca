@@ -8,23 +8,23 @@ const allBooks = library.fetchData(libraryUrl)
 console.log(allBooks)
 
 //Add/Create book
-// library.createBook(
-    // libraryUrl, 
-    // { 
-        // name: 'Desolaçãp de Smaug', 
-        // genre: 'Fantasia',  
-        // author:'J.R.R. Tolkien', 
-        // publisher: 'HarperCollins' 
-    // }
-// )
+library.createBook(
+libraryUrl, 
+{ 
+    name: 'Desolaçãp de Smaug', 
+    genre: 'Fantasia',  
+    author:'J.R.R. Tolkien', 
+    publisher: 'HarperCollins' 
+}
+)
 
-//library.getBook(libraryUrl, '668b1c6ad7f5ec2999037f5f')
+library.getBook(libraryUrl, '668b1c6ad7f5ec2999037f5f')
 
-// library.updateBook(libraryUrl, '668b1c6ad7f5ec2999037f5f', {
-//     name:'Desolação de Smaug',
-//     genre:'Fantasia',
-//     author:'J.R.R. Tolkien', 
-//     publisher: 'HarperCollins'
-// })
+library.updateBook(libraryUrl, '668b1c6ad7f5ec2999037f5f', {
+    name:'Desolação de Smaug',
+    genre:'Fantasia',
+    author:'J.R.R. Tolkien', 
+    publisher: 'HarperCollins'
+})
 
-//library.deleteBook(libraryUrl, '668b1c6ad7f5ec2999037f5f')
+library.deleteBook(libraryUrl, '668b1c6ad7f5ec2999037f5f')
