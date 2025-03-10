@@ -1,5 +1,5 @@
 import { createServer } from 'http'
-import { HOSTNAME, PORT } from './env'
+import { HOSTNAME, PORT } from '@/env'
 
 const server = createServer((req, res) => {
   res.statusCode = 200
