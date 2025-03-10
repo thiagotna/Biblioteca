@@ -1,6 +1,12 @@
 import { createServer } from 'http'
-import { env } from './env'
+import { HOSTNAME, PORT } from './env'
 
-const HOSTNAME = env
+const server = createServer((req, res) => {
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'text/plain')
+  res.end('Server is running\n')
+})
 
-console.log(env)
+server.listen(PORT, () => {
+  console.log(`Server running at http://${HOSTNAME}:${PORT}/`)
+})
