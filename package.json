@@ -1,0 +1,27 @@
+{
+  "name": "biblioteca",
+  "version": "1.0.0",
+  "description": "Tech Challenge de Typescript",
+  "keywords": [
+    "Challenge",
+    "para",
+    "pós-graduação",
+    "da",
+    "FIAP"
+  ],
+  "homepage": "https://github.com/thiagotna/Biblioteca#readme",
+  "bugs": {
+    "url": "https://github.com/thiagotna/Biblioteca/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagotna/Biblioteca.git"
+  },
+  "license": "ISC",
+  "author": "Thiago do Nascimento Araujo",
+  "type": "module",
+  "main": "/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
