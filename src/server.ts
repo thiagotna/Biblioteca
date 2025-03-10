@@ -1,5 +1,8 @@
 import { createServer } from 'http'
-import { HOSTNAME, PORT } from '@/env'
+import { HOSTNAME, PORT, DATABASE_NAME } from '@/env'
+import database from '@/lib/mongoose/database'
+
+console.log('Library Database instance created:', database)
 
 const server = createServer((req, res) => {
   res.statusCode = 200

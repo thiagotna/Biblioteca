@@ -1,20 +1,17 @@
+import IBook from '@/models/Interfaces/IBook'
 import ILibraryRepository from '../interfaces/ILibraryRepository'
+import Book from '@/models/entities/Book'
+import Publisher from '@/models/entities/Publisher'
 
 export default class LibraryRepository implements ILibraryRepository {
-  createBook(data: any): Promise<void> {
+  //addBook(book: IBook): Promise<void> {}
+  getBooks(): Promise<IBook[]> {
     throw new Error('Method not implemented.')
   }
-  updateBook(id: string, data: any): Promise<void> {
+  rentBook(id: string): Promise<IBook> {
     throw new Error('Method not implemented.')
   }
-  deleteBook(id: string): Promise<void> {
+  returnBook(id: string): Promise<IBook> {
     throw new Error('Method not implemented.')
-  }
-  async getBooks() {
-    return []
-  }
-
-  async getBookById(id: string) {
-    return null
   }
 }

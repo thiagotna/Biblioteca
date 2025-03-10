@@ -13,5 +13,5 @@ const BookSchema = new Schema({
   },
 })
 
-const Book = mongoose.model<IBook>('books', BookSchema)
+const Book = mongoose.model<IBook & Document>('books', BookSchema)
 export default Book

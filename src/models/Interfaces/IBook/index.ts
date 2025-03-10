@@ -6,5 +6,5 @@ export default interface IBook {
   genre: string
   author: string
   stock: number
-  publisher_ids: Pick<IPublisher, 'id'>
+  publisher_ids?: Pick<IPublisher, 'id'>
 }
