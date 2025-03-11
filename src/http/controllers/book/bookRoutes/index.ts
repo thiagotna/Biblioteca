@@ -1,5 +1,6 @@
 import createBook from '@/http/controllers/book/createBook'
-import getBookByName from '../getBookByName'
+import getBookByName from '@/http/controllers/book/getBookByName'
+import updateBook from '@/http/controllers/book/updateBook'
 
 const bookRoutes = {
   '/book': {
@@ -7,6 +8,7 @@ const bookRoutes = {
   },
   '/book/:name': {
     GET: getBookByName,
+    PUT: updateBook,
   },
 }
 

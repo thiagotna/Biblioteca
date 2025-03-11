@@ -31,21 +31,28 @@ export default class BookRepository implements IBookRepository {
     }
   }
 
-  async updateBook(bookName: string): Promise<void> {
+  async updateBook(bookName: string, newBookData: IBook): Promise<IBook> {
     try {
-      const updateBook = Book.findOneAndUpdate({
-        name: bookName,
-      })
+      const existingBook = await Book.findOne({ name: bookName })
+      const updateBook = await Book.findOneAndUpdate(
+        { name: bookName },
+        { $set: newBookData },
+        { new: true },
+      )
+
+      console.log(`✅ Book found: ${existingBook}`)
+
       if (!updateBook) {
         throw new Error('Book not found')
       }
-      console.log(`${Book.name} updated successfully`)
+      console.log(`${updateBook.name} updated successfully`)
+      return updateBook
     } catch (error) {}
   }
 
-  async deleteBook(id: string): Promise<void> {
+  async deleteBook(bookName: string): Promise<void> {
     try {
-      const deleteBook = Book.findOneAndDelete({ _id: id })
+      const deleteBook = Book.findOneAndDelete({ name: bookName })
       console.log(`${Book.name} deleted successfully`)
     } catch (error) {
       throw new Error('Book not found')
