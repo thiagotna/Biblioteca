@@ -1,13 +1,14 @@
-import { createServer } from 'http'
-import { HOSTNAME, PORT, DATABASE_NAME } from '@/env'
-import database from '@/lib/mongoose/database'
+import database from './lib/mongoose/database'
+import { createServer, IncomingMessage, ServerResponse } from 'http'
+import { HOSTNAME, PORT } from '@/env'
+import router from '@/http/router'
+import bookRoutes from './http/controllers/book/bookRoutes'
 
-console.log('Library Database instance created:', database)
+console.log(database)
 
-const server = createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/plain')
-  res.end('Server is running\n')
+/** Routes Registering */
+const server = createServer((req: IncomingMessage, res: ServerResponse) => {
+  router(req, res, bookRoutes)
 })
 
 server.listen(PORT, () => {

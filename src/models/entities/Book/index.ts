@@ -9,9 +9,9 @@ const BookSchema = new Schema({
   publisher_id: {
     type: Schema.Types.ObjectId,
     ref: 'Publisher',
-    required: true,
+    required: false,
   },
 })
 
-const Book = mongoose.model<IBook & Document>('books', BookSchema)
+const Book = mongoose.model<IBook & Document>('Book', BookSchema, 'books')
 export default Book

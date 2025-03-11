@@ -1,8 +1,8 @@
 import IBook from '@/models/Interfaces/IBook'
 
 export default interface ILibraryRepository {
-  //addBook(book: IBook): Promise<void>
+  getBook(bookName: string): Promise<IBook>
   getBooks(): Promise<IBook[]>
-  rentBook(id: string): Promise<IBook>
-  returnBook(id: string): Promise<IBook>
+  rentBook(bookName: string): Promise<IBook>
+  returnBook(bookName: string): Promise<IBook>
 }
