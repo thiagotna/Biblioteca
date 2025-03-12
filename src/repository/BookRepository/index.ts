@@ -32,7 +32,7 @@ export default class BookRepository implements IBookRepository {
 
   async updateBook(bookName: string, newBookData: IBook): Promise<IBook> {
     try {
-      const existingBook = this.getBook(bookName)
+      const existingBook = await this.getBook(bookName)
       const updateBook = await Book.findOneAndUpdate(
         { name: bookName },
         { $set: newBookData },
@@ -44,9 +44,13 @@ export default class BookRepository implements IBookRepository {
       if (!updateBook) {
         throw new Error('Book not found')
       }
+
       console.log(`${updateBook.name} updated successfully`)
+
       return updateBook
-    } catch (error) {}
+    } catch (error) {
+      throw new Error('Book not found')
+    }
   }
 
   async deleteBook(bookName: string): Promise<IBook> {

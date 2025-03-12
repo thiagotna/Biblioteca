@@ -33,9 +33,34 @@ export default class PublisherRepository implements IPublisherRepository {
     }
   }
 
-  async updatePublisher(publisher: IPublisher): Promise<void> {}
+  async updatePublisher(
+    publisherName: string,
+    publisher: IPublisher,
+  ): Promise<IPublisher> {
+    try {
+      const existingPublisher = await this.getPublisherByName(publisherName)
+      const updatedPublisher = await Publisher.findOneAndUpdate(
+        { name: publisherName },
+        { $set: publisher },
+        { new: true },
+      )
 
-  async deletePublisher(id: string): Promise<void> {
+      console.log(`Publisher found: ${existingPublisher}`)
+
+      if (!updatedPublisher) {
+        throw new Error('Publisher not found')
+      }
+
+      console.log(`${updatedPublisher.name} updated successfully`)
+
+      return updatedPublisher
+    } catch (error) {
+      console.error('Error updating publisher:', error)
+      throw new Error(`Database query error: ${error}`)
+    }
+  }
+
+  async deletePublisher(id: string): Promise<IPublisher> {
     throw new Error('Method not implemented.')
   }
 }
