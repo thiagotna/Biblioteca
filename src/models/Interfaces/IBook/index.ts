@@ -5,6 +5,5 @@ export default interface IBook {
   name: string
   genre: string
   author: string
-  stock: number
-  publisher_id?: Pick<IPublisher, 'id'>
+  publisher_id: string
 }

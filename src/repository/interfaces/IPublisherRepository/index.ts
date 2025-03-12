@@ -1,6 +1,7 @@
 import IPublisher from '@/models/Interfaces/IPublisher'
 
 export interface IPublisherRepository {
+  getPublisherById(publisherId: string): Promise<IPublisher | null>
   getPublisherByName(publisherName: string): Promise<IPublisher | null>
   addPublisher(publisher: IPublisher): Promise<void>
   updatePublisher(

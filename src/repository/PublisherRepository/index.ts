@@ -3,6 +3,24 @@ import Publisher from '@/models/entities/Publisher'
 import { IPublisherRepository } from '../interfaces/IPublisherRepository'
 
 export default class PublisherRepository implements IPublisherRepository {
+  async getPublisherById(publisherId: string): Promise<IPublisher | null> {
+    try {
+      console.log(`Searching for publisher: ${publisherId}`)
+      const publisher = await Publisher.findById(publisherId)
+
+      if (!publisher) {
+        console.log('Publisher not found in database')
+        return null
+      }
+
+      console.log('Publisher found:', publisher)
+      return publisher
+    } catch (error) {
+      console.error('Error searching for publisher:', error)
+      throw new Error(`Database query error: ${error}`)
+    }
+  }
+
   async getPublisherByName(publisherName: string): Promise<IPublisher | null> {
     try {
       console.log(`Searching for publisher: ${publisherName}`)
