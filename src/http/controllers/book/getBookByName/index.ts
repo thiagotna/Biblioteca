@@ -27,7 +27,7 @@ async function getBookByName(
     } else {
       response.statusCode = 404
       response.setHeader('Content-Type', 'application/json')
-      response.end(JSON.stringify({ message: 'Book not found' }))
+      response.end(JSON.stringify({ message: 'Book could not be created' }))
     }
   } catch (error) {
     response.statusCode = 500

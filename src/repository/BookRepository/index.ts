@@ -1,6 +1,6 @@
 import IBook from '@/models/Interfaces/IBook'
-import { IBookRepository } from '../interfaces/IBookRepository'
 import Book from '@/models/entities/Book'
+import { IBookRepository } from '../interfaces/IBookRepository'
 
 export default class BookRepository implements IBookRepository {
   async getBook(bookName: string): Promise<IBook | null> {
@@ -13,7 +13,6 @@ export default class BookRepository implements IBookRepository {
         return null
       }
 
-      console.log('Book found:', book)
       return book
     } catch (error) {
       console.error('Error searching for book:', error)
@@ -33,7 +32,7 @@ export default class BookRepository implements IBookRepository {
 
   async updateBook(bookName: string, newBookData: IBook): Promise<IBook> {
     try {
-      const existingBook = await Book.findOne({ name: bookName })
+      const existingBook = this.getBook(bookName)
       const updateBook = await Book.findOneAndUpdate(
         { name: bookName },
         { $set: newBookData },

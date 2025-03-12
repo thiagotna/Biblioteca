@@ -6,7 +6,7 @@ const PublisherSchema = new Schema({
   books_id: {
     type: Schema.Types.ObjectId,
     ref: 'Publisher',
-    required: true,
+    required: false,
   },
 })
 
