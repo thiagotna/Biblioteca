@@ -40,7 +40,7 @@ export default class BookRepository implements IBookRepository {
         { new: true },
       )
 
-      console.log(`✅ Book found: ${existingBook}`)
+      console.log(`Book found: ${existingBook}`)
 
       if (!updateBook) {
         throw new Error('Book not found')
@@ -50,10 +50,14 @@ export default class BookRepository implements IBookRepository {
     } catch (error) {}
   }
 
-  async deleteBook(bookName: string): Promise<void> {
+  async deleteBook(bookName: string): Promise<IBook> {
     try {
       const deleteBook = Book.findOneAndDelete({ name: bookName })
+      if (!deleteBook) {
+        throw new Error('Book not found')
+      }
       console.log(`${Book.name} deleted successfully`)
+      return deleteBook
     } catch (error) {
       throw new Error('Book not found')
     }

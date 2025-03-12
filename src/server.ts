@@ -6,7 +6,9 @@ import bookRoutes from './http/controllers/book/bookRoutes'
 
 console.log(database)
 
-/** Routes Registering */
+/**
+ * Routes Registering
+ * */
 const server = createServer((req: IncomingMessage, res: ServerResponse) => {
   router(req, res, bookRoutes)
 })
