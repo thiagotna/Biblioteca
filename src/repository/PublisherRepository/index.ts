@@ -5,15 +5,15 @@ import { IPublisherRepository } from '../interfaces/IPublisherRepository'
 export default class PublisherRepository implements IPublisherRepository {
   async getPublisherById(publisherId: string): Promise<IPublisher | null> {
     try {
-      console.log(`Searching for publisher: ${publisherId}`)
+      console.log(`Searching for publisher ID: ${publisherId}`)
       const publisher = await Publisher.findById(publisherId)
 
       if (!publisher) {
-        console.log('Publisher not found in database')
+        console.log('Publisher not found!')
         return null
       }
 
-      console.log('Publisher found:', publisher)
+      console.log('Publisher found:', publisher.name)
       return publisher
     } catch (error) {
       console.error('Error searching for publisher:', error)
@@ -27,7 +27,7 @@ export default class PublisherRepository implements IPublisherRepository {
       const publisher = await Publisher.findOne({ name: publisherName })
 
       if (!publisher) {
-        console.log('Publisher not found in database')
+        console.log('Publisher not found!')
         return null
       }
 
