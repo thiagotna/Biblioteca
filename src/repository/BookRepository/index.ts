@@ -55,11 +55,11 @@ export default class BookRepository implements IBookRepository {
 
   async deleteBook(bookName: string): Promise<IBook> {
     try {
-      const deleteBook = Book.findOneAndDelete({ name: bookName })
+      const deleteBook = await Book.findOneAndDelete({ name: bookName })
       if (!deleteBook) {
         throw new Error('Book not found')
       }
-      console.log(`${Book.name} deleted successfully`)
+      console.log(`${deleteBook.name} deleted successfully`)
       return deleteBook
     } catch (error) {
       throw new Error('Book not found')

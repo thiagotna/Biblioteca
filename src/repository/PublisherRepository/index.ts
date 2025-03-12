@@ -60,7 +60,15 @@ export default class PublisherRepository implements IPublisherRepository {
     }
   }
 
-  async deletePublisher(id: string): Promise<IPublisher> {
-    throw new Error('Method not implemented.')
+  async deletePublisher(publisherName: string): Promise<IPublisher> {
+    try {
+      const deletedPublisher = await Publisher.findOneAndDelete({
+        name: publisherName,
+      })
+      console.log(`${deletedPublisher.name} deleted successfully`)
+      return deletedPublisher
+    } catch (error) {
+      console.error('Error deleting publisher:', error)
+    }
   }
 }

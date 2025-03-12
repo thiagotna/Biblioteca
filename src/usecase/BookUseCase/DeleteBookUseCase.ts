@@ -1,4 +1,3 @@
-import IBook from '@/models/Interfaces/IBook'
 import { IBookRepository } from '@/repository/interfaces/IBookRepository'
 
 export default class DeleteBookUseCase {

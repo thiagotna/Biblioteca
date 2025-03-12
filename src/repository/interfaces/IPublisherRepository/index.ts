@@ -7,5 +7,5 @@ export interface IPublisherRepository {
     publisherName: string,
     publisher: IPublisher,
   ): Promise<IPublisher>
-  deletePublisher(id: string): Promise<IPublisher>
+  deletePublisher(bookName: string): Promise<IPublisher>
 }
