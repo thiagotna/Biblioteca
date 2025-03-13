@@ -22,6 +22,11 @@ export default class CreateBookUseCase {
         book.publisher_id,
       )
 
+      if (bookExists) {
+        console.log('Book already exists!')
+        return
+      }
+
       if (publisherExists.id !== book.publisher_id) {
         console.log('Publisher does not match. Unable to create book')
         return

@@ -5,14 +5,20 @@ export default class AddPublisherUseCase {
   constructor(private publisherRepository: PublisherRepository) {}
 
   async execute(publisher: IPublisher): Promise<void> {
-    const publisherExists = await this.publisherRepository.getPublisherByName(
-      publisher.name,
-    )
+    console.log('Creating new publisher:', publisher)
 
-    if (publisherExists) {
-      throw new Error('Publisher already exists')
+    try {
+      const publisherExists = await this.publisherRepository.getPublisherByName(
+        publisher.name,
+      )
+
+      if (publisherExists) {
+        return console.log('Publisher already exists')
+      }
+      await this.publisherRepository.addPublisher(publisher)
+      console.log('Publisher created successfully')
+    } catch (error) {
+      console.error('Error creating publisher:', error)
     }
-
-    await this.publisherRepository.addPublisher(publisher)
   }
 }
