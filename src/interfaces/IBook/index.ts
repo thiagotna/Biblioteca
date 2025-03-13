@@ -1,5 +1,3 @@
-import IPublisher from '@/interfaces/IPublisher'
-
 export default interface IBook {
   id?: string
   name: string
