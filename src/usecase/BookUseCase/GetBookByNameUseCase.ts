@@ -5,6 +5,8 @@ export default class GetBookByNameUseCase {
   constructor(private BookRepositor: IBookRepository) {}
 
   async execute(bookName: string): Promise<IBook | null> {
+    console.log('Searching for book:', bookName)
+
     try {
       const book = await this.BookRepositor.getBook(bookName)
       if (!book) {
@@ -14,6 +16,8 @@ export default class GetBookByNameUseCase {
 
       console.log('Book found:', book)
       return book
-    } catch (error) {}
+    } catch (error) {
+      console.error(`Error getting book: ${error}`)
+    }
   }
 }

@@ -23,7 +23,7 @@ export default class CreateBookUseCase {
       )
 
       if (bookExists) {
-        console.log('Book already exists!')
+        console.log('Book already exists. Unable to create book')
         return
       }
 
@@ -46,7 +46,7 @@ export default class CreateBookUseCase {
 
       await this.bookRepository.addBook(book)
     } catch (error) {
-      throw new Error(`Error creating book: ${error}`)
+      console.error(`Error creating book: ${error}`)
     }
   }
 }
