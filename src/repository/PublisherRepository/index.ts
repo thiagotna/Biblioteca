@@ -62,4 +62,18 @@ export default class PublisherRepository implements IPublisherRepository {
       console.error('Error deleting publisher:', error)
     }
   }
+
+  async removeBookFromPublisher(bookId: string): Promise<IPublisher> {
+    try {
+      const publisher = await Publisher.findOneAndUpdate(
+        { book_ids: { $in: [bookId] } },
+        { $pull: { book_ids: bookId } },
+        { new: true },
+      )
+
+      return publisher
+    } catch (error) {
+      throw new Error(`Error removing book from publisher: ${error}`)
+    }
+  }
 }

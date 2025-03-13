@@ -9,4 +9,5 @@ export interface IPublisherRepository {
     publisher: IPublisher,
   ): Promise<IPublisher>
   deletePublisher(bookName: string): Promise<IPublisher>
+  removeBookFromPublisher(bookId: string): Promise<IPublisher>
 }
