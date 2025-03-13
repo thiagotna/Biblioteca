@@ -13,11 +13,12 @@ export default class BookRepository implements IBookRepository {
     }
   }
 
-  async addBook(book: IBook): Promise<void> {
+  async addBook(book: IBook): Promise<IBook> {
     try {
       const newBook = new Book(book)
       await newBook.save()
       console.log('Book created successfully')
+      return newBook
     } catch (error) {
       throw new Error(`Error creating book: ${error}`)
     }
