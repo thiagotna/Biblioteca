@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { parse } from 'url'
-import IPublisher from '@/models/Interfaces/IPublisher'
+import IPublisher from '@/interfaces/IPublisher'
 import makeUpdatePublisher from '@/factory/PublisherFactory/makeUpdateBook'
 
 export default function updatePublisher(

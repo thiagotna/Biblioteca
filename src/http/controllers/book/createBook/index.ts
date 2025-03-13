@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import makeBook from '@/factory/BookFactory/makeBook'
-import IBook from '@/models/Interfaces/IBook'
+import IBook from '@/interfaces/IBook'
 
 async function createBook(request: IncomingMessage, response: ServerResponse) {
   try {

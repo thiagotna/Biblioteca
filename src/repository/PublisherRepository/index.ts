@@ -1,6 +1,6 @@
-import IPublisher from '@/models/Interfaces/IPublisher'
+import IPublisher from '@/interfaces/IPublisher'
 import Publisher from '@/models/entities/Publisher'
-import { IPublisherRepository } from '../interfaces/IPublisherRepository'
+import { IPublisherRepository } from '../../interfaces/IPublisherRepository'
 
 export default class PublisherRepository implements IPublisherRepository {
   async getPublisherById(publisherId: string): Promise<IPublisher | null> {

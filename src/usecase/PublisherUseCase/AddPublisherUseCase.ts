@@ -1,4 +1,4 @@
-import IPublisher from '@/models/Interfaces/IPublisher'
+import IPublisher from '@/interfaces/IPublisher'
 import PublisherRepository from '@/repository/PublisherRepository'
 
 export default class AddPublisherUseCase {

@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { parse } from 'url'
 import { makeDeleteBook } from '@/factory/BookFactory/makeDeleteBook'
-import IBook from '@/models/Interfaces/IBook'
+import IBook from '@/interfaces/IBook'
 
 export default async function deleteBook(
   request: IncomingMessage,

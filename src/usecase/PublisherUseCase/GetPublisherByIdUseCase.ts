@@ -1,5 +1,5 @@
-import { IPublisherRepository } from '@/repository/interfaces/IPublisherRepository'
-import IPublisher from '@/models/Interfaces/IPublisher'
+import { IPublisherRepository } from '@/interfaces/IPublisherRepository'
+import IPublisher from '@/interfaces/IPublisher'
 
 export default class GetPublisherByIdUseCase {
   constructor(private publisherRepository: IPublisherRepository) {}

@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose'
-import IBook from '@/models/Interfaces/IBook'
+import IBook from '@/interfaces/IBook'
 
 const BookSchema = new Schema({
   name: { type: String, required: true },

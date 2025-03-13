@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import IPublisher from '@/models/Interfaces/IPublisher'
+import IPublisher from '@/interfaces/IPublisher'
 import makeAddPublisher from '@/factory/PublisherFactory/makeAddPublisher'
 
 export default async function addPublisher(

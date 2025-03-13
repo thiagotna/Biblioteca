@@ -1,4 +1,4 @@
-import { IBookRepository } from '@/repository/interfaces/IBookRepository'
+import { IBookRepository } from '@/interfaces/IBookRepository'
 import GetBookByNameUseCase from './GetBookByNameUseCase'
 
 export default class DeleteBookUseCase {

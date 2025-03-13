@@ -1,6 +1,6 @@
-import IBook from '@/models/Interfaces/IBook'
+import IBook from '@/interfaces/IBook'
 import Book from '@/models/entities/Book'
-import { IBookRepository } from '../interfaces/IBookRepository'
+import { IBookRepository } from '../../interfaces/IBookRepository'
 
 export default class BookRepository implements IBookRepository {
   async getBook(bookName: string): Promise<IBook | null> {

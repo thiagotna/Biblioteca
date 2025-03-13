@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose'
-import IPublisher from '@/models/Interfaces/IPublisher'
+import IPublisher from '@/interfaces/IPublisher'
 
 const PublisherSchema = new Schema({
   name: { type: String, required: true },

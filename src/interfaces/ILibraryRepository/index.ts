@@ -1,4 +1,4 @@
-import IBook from '@/models/Interfaces/IBook'
+import IBook from '@/interfaces/IBook'
 
 export default interface ILibraryRepository {
   getBook(bookName: string): Promise<IBook>

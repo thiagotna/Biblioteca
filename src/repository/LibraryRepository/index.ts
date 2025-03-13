@@ -1,5 +1,5 @@
-import IBook from '@/models/Interfaces/IBook'
-import ILibraryRepository from '../interfaces/ILibraryRepository'
+import IBook from '@/interfaces/IBook'
+import ILibraryRepository from '../../interfaces/ILibraryRepository'
 import Book from '@/models/entities/Book'
 import Publisher from '@/models/entities/Publisher'
 

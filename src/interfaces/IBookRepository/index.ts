@@ -1,4 +1,4 @@
-import IBook from '@/models/Interfaces/IBook'
+import IBook from '@/interfaces/IBook'
 
 export interface IBookRepository {
   getBook(bookName: string): Promise<IBook | null>

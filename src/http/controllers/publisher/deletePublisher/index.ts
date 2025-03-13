@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { parse } from 'url'
 import makeDeletePublisher from '@/factory/PublisherFactory/makeDeletePublisher'
-import IPublisher from '@/models/Interfaces/IPublisher'
+import IPublisher from '@/interfaces/IPublisher'
 
 export default async function deletePublisherController(
   request: IncomingMessage,

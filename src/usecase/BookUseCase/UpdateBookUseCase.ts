@@ -1,5 +1,5 @@
-import IBook from '@/models/Interfaces/IBook'
-import { IBookRepository } from '@/repository/interfaces/IBookRepository'
+import IBook from '@/interfaces/IBook'
+import { IBookRepository } from '@/interfaces/IBookRepository'
 import GetBookByNameUseCase from './GetBookByNameUseCase'
 
 export default class UpdateBookUseCase {

@@ -1,5 +1,5 @@
-import IPublisher from '@/models/Interfaces/IPublisher'
-import { IPublisherRepository } from '@/repository/interfaces/IPublisherRepository'
+import IPublisher from '@/interfaces/IPublisher'
+import { IPublisherRepository } from '@/interfaces/IPublisherRepository'
 import GetPublisherUseCase from './GetPublisherUseCase'
 
 export default class UpdatedPublisherUseCase {

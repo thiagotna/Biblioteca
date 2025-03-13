@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import makeUpdateBook from '@/factory/BookFactory/makeUpdateBook'
 import { parse } from 'url'
-import IBook from '@/models/Interfaces/IBook'
+import IBook from '@/interfaces/IBook'
 
 async function updateBook(request: IncomingMessage, response: ServerResponse) {
   try {

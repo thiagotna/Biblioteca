@@ -1,4 +1,4 @@
-import IPublisher from '@/models/Interfaces/IPublisher'
+import IPublisher from '@/interfaces/IPublisher'
 
 export interface IPublisherRepository {
   getPublisherById(publisherId: string): Promise<IPublisher | null>
