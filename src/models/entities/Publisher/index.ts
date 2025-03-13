@@ -3,11 +3,12 @@ import IPublisher from '@/models/Interfaces/IPublisher'
 
 const PublisherSchema = new Schema({
   name: { type: String, required: true },
-  books_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Publisher',
-    required: false,
-  },
+  book_ids: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Book',
+    },
+  ],
 })
 
 const Publisher = mongoose.model<IPublisher & Document>(

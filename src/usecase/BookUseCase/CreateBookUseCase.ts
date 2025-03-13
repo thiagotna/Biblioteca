@@ -1,7 +1,9 @@
 import IBook from '@/models/Interfaces/IBook'
 import { IBookRepository } from '@/repository/interfaces/IBookRepository'
 import { IPublisherRepository } from '@/repository/interfaces/IPublisherRepository'
+import GetBookByNameUseCase from './GetBookByNameUseCase'
 import GetPublisherByIdUseCase from '@/usecase/PublisherUseCase/GetPublisherByIdUseCase'
+import UpdatedPublisherUseCase from '../PublisherUseCase/UpdatePublisherUseCase'
 
 export default class CreateBookUseCase {
   constructor(
@@ -11,50 +13,31 @@ export default class CreateBookUseCase {
 
   async execute(book: IBook): Promise<void> {
     try {
-      const bookExists = await this.bookRepository.getBook(book.name)
-      if (bookExists) {
-        console.log('Book already exists')
-        return
-      }
-
+      const getBookByNameUseCase = new GetBookByNameUseCase(this.bookRepository)
       const getPublisherByIdUseCase = new GetPublisherByIdUseCase(
         this.publisherRepository,
       )
-
+      const bookExists = await getBookByNameUseCase.execute(book.name)
       const publisherExists = await getPublisherByIdUseCase.execute(
         book.publisher_id,
       )
-
-      console.log('Searching for publisher:', book.publisher_id)
-
-      if (!publisherExists) {
-        console.log('Publisher does not exist. Unable to create book')
-        return
-      }
-
-      console.log('publisherExists', publisherExists.name)
 
       if (publisherExists.id !== book.publisher_id) {
         console.log('Publisher does not match. Unable to create book')
         return
       }
 
-      // Inicializa book_ids se estiver indefinido
-      if (!publisherExists.book_ids) {
-        publisherExists.book_ids = []
-      }
-
+      book.publisher_id = publisherExists.id
       publisherExists.book_ids.push(book.id)
 
-      const updatedPublisher = await this.publisherRepository.updatePublisher(
-        publisherExists.name,
-        publisherExists,
+      const updatePublisher = new UpdatedPublisherUseCase(
+        this.publisherRepository,
       )
 
-      if (!updatedPublisher) {
-        console.log('Error updating publisher: Publisher not found')
-        return
-      }
+      await updatePublisher.execute(publisherExists.name, {
+        ...publisherExists,
+        book_ids: publisherExists.book_ids,
+      })
 
       await this.bookRepository.addBook(book)
     } catch (error) {

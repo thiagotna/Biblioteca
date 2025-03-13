@@ -13,7 +13,7 @@ export default class PublisherRepository implements IPublisherRepository {
         return null
       }
 
-      console.log('Publisher found:', publisher.name)
+      console.log('Publisher ID found:', publisher.id)
       return publisher
     } catch (error) {
       console.error('Error searching for publisher:', error)
@@ -31,7 +31,7 @@ export default class PublisherRepository implements IPublisherRepository {
         return null
       }
 
-      console.log('Publisher found:', publisher)
+      console.log('Publisher found:', publisher.name)
       return publisher
     } catch (error) {
       console.error('Error searching for publisher:', error)
@@ -57,16 +57,18 @@ export default class PublisherRepository implements IPublisherRepository {
   ): Promise<IPublisher> {
     try {
       const existingPublisher = await this.getPublisherByName(publisherName)
+
       const updatedPublisher = await Publisher.findOneAndUpdate(
         { name: publisherName },
-        { $set: publisher },
+        {
+          $set: { name: publisher.name }, // Updates only the name
+          $addToSet: { book_ids: { $each: publisher.book_ids } }, // Ensures book_ids are added to the array
+        },
         { new: true },
       )
 
-      console.log(`Publisher found: ${existingPublisher}`)
-
-      if (!updatedPublisher) {
-        throw new Error('Publisher not found')
+      if (!existingPublisher) {
+        return
       }
 
       console.log(`${updatedPublisher.name} updated successfully`)
@@ -80,6 +82,8 @@ export default class PublisherRepository implements IPublisherRepository {
 
   async deletePublisher(publisherName: string): Promise<IPublisher> {
     try {
+      const publisherExists = await this.getPublisherByName(publisherName)
+      if (!publisherExists) return
       const deletedPublisher = await Publisher.findOneAndDelete({
         name: publisherName,
       })

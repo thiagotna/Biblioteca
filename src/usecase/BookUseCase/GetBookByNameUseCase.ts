@@ -8,7 +8,7 @@ export default class GetBookByNameUseCase {
     try {
       const book = await this.BookRepositor.getBook(bookName)
       if (!book) {
-        console.log('Book not found in database')
+        console.log('Book not found!')
         return null
       }
 
