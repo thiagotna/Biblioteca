@@ -4,6 +4,7 @@ import { HOSTNAME, PORT } from '@/env'
 import router from '@/http/router'
 import bookRoutes from './http/controllers/book/bookRoutes'
 import publisherRoutes from './http/controllers/publisher/publisherRoutes'
+import stockRoutes from './http/controllers/stock/stockRoutes'
 
 console.log(database)
 
@@ -13,6 +14,7 @@ console.log(database)
 const routes = {
   ...bookRoutes,
   ...publisherRoutes,
+  ...stockRoutes,
 }
 
 /**
