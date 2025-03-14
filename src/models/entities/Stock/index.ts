@@ -13,5 +13,5 @@ const StockSchema = new Schema({
   reserved: { type: Number, required: true },
 })
 
-const Stock = mongoose.model<IStock & Document>('Stock', StockSchema, 'stocks')
+const Stock = mongoose.model<IStock & Document>('Stock', StockSchema, 'stock')
 export default Stock
