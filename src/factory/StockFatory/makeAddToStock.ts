@@ -9,7 +9,6 @@ export default function makeAddToStock() {
   const stockRepository = new StockRepository()
   const addBookToStockUseCase = new AddBookToStockUseCase(
     bookRepository,
-    publisherRepository,
     stockRepository,
   )
 

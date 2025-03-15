@@ -1,7 +1,7 @@
 import IBook from '@/interfaces/IBook'
 import IStock from '@/interfaces/IStock'
 import IStockRepository from '@/interfaces/IStockRepository'
-import GetBookByNameUseCase from '../BookUseCase/GetBookByNameUseCase'
+import GetBookByNameUseCase from '@/usecase/BookUseCase/GetBookByNameUseCase'
 import { IBookRepository } from '@/interfaces/IBookRepository'
 
 export default class AddBookToStockUseCase {
@@ -18,7 +18,9 @@ export default class AddBookToStockUseCase {
       const bookExists = await getBookByNameUseCase.execute(book.name)
 
       if (!bookExists) {
-        console.log(`Book does not exist. Please create ${book.name} first...`)
+        console.log(
+          `Book does not exist. Please create ${book.name} book first...`,
+        )
         return null
       }
 
