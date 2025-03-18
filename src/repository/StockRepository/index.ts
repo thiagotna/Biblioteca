@@ -6,7 +6,7 @@ import IStockRepository from '@/interfaces/IStockRepository'
 export default class StockRepository implements IStockRepository {
   async getBookFromStock(bookId: string): Promise<IStock | null> {
     try {
-      const bookInStock = await Stock.findOne({ where: { bookId } })
+      const bookInStock = await Stock.findOne({ book_id: bookId })
       return bookInStock
     } catch (error) {
       throw new Error(`Database query error: ${error}`)

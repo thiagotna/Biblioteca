@@ -34,7 +34,7 @@ export default class AddBookToStockUseCase {
         borrowed: 0,
         reserved: 0,
       }
-
+      console.log('Book added to stock successfully!')
       return await this.stockRepository.addBookToStock(bookStock)
     } catch (error) {
       console.error(`Error adding book to stock: ${error}`)
