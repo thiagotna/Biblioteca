@@ -1,4 +1,3 @@
-import IBook from '@/interfaces/IBook'
 import IStock from '@/interfaces/IStock'
 import Stock from '@/models/entities/Stock'
 import IStockRepository from '@/interfaces/IStockRepository'
@@ -25,8 +24,8 @@ export default class StockRepository implements IStockRepository {
   async borrowBook(bookId: string): Promise<IStock> {
     try {
       const borrowedBook = await Stock.findOneAndUpdate(
-        { bookId },
-        { $inc: { available: -1 } },
+        { book_id: bookId },
+        { $inc: { available: -1, borrowed: +1 } },
         { new: true },
       )
       return borrowedBook
@@ -38,8 +37,8 @@ export default class StockRepository implements IStockRepository {
   async returnBook(bookId: string): Promise<IStock> {
     try {
       const returnedBook = await Stock.findOneAndUpdate(
-        { bookId },
-        { $inc: { available: +1 } },
+        { book_id: bookId },
+        { $inc: { available: +1, borrowed: -1 } },
         { new: true },
       )
       return returnedBook
@@ -51,7 +50,7 @@ export default class StockRepository implements IStockRepository {
   async reserveBook(bookId: string): Promise<IStock> {
     try {
       const reservedBook = await Stock.findOneAndUpdate(
-        { bookId },
+        { book_id: bookId },
         { $inc: { available: -1, reserved: +1 } },
         { new: true },
       )
@@ -64,7 +63,7 @@ export default class StockRepository implements IStockRepository {
   async cancelReservation(bookId: string): Promise<IStock> {
     try {
       const cancelledReservation = await Stock.findOneAndUpdate(
-        { bookId },
+        { book_id: bookId },
         { $inc: { available: +1, reserved: -1 } },
         { new: true },
       )

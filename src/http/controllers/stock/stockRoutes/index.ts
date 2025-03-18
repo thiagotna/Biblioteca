@@ -1,5 +1,6 @@
 import addBookToStock from '@/http/controllers/stock/addBookToStock'
 import getBookFromStock from '@/http/controllers/stock/getBookFromStock'
+import borrowBook from '../borrowBook/indext'
 
 const stockRoutes = {
   '/stock': {
@@ -7,6 +8,7 @@ const stockRoutes = {
   },
   '/stock/:bookId': {
     GET: getBookFromStock,
+    PUT: borrowBook,
   },
 }
 
