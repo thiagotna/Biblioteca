@@ -25,8 +25,6 @@ export default async function borrowBook(
     response.statusCode = 200
     response.setHeader('Content-Type', 'application/json')
     response.end(JSON.stringify(book))
-
-    return
   } catch (error) {
     response.statusCode = 500
     response.setHeader('Content-Type', 'application/json')

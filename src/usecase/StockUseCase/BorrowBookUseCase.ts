@@ -1,5 +1,6 @@
 import IStock from '@/interfaces/IStock'
 import IStockRepository from '@/interfaces/IStockRepository'
+import GetBookByFromStockUseCase from './GetBookFromStockUseCase'
 
 export default class BorrowBookUseCase {
   constructor(private stockRepository: IStockRepository) {}
@@ -7,15 +8,20 @@ export default class BorrowBookUseCase {
   async execute(bookId: string): Promise<IStock | null> {
     console.log(`Checking out availablility for book id: ${bookId}`)
     try {
-      const book = await this.stockRepository.borrowBook(bookId)
-      console.log('Book:', book)
+      const getBookFromStock = new GetBookByFromStockUseCase(
+        this.stockRepository,
+      )
+      const book = await getBookFromStock.execute(bookId)
 
-      if (book.available < 1) {
+      if (!book || book.available < 1) {
         console.log('Book not available')
         return null
       }
+
+      const borrowBook = await this.stockRepository.borrowBook(bookId)
+
       console.log('Book checked out:', book)
-      return book
+      return borrowBook
     } catch (error) {
       console.error('Error checking out book:', error)
     }
