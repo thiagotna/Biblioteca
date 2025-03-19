@@ -8,10 +8,10 @@ export default class BorrowBookUseCase {
   async execute(bookId: string): Promise<IStock | null> {
     console.log(`Checking out availablility for book id: ${bookId}`)
     try {
-      const getBookFromStock = new GetBookByFromStockUseCase(
+      const getBookFromStockUseCase = new GetBookByFromStockUseCase(
         this.stockRepository,
       )
-      const book = await getBookFromStock.execute(bookId)
+      const book = await getBookFromStockUseCase.execute(bookId)
 
       if (book.available < 1) {
         console.log('Book not available')
