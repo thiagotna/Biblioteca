@@ -3,6 +3,7 @@ import getBookFromStock from '@/http/controllers/stock/getBookFromStock'
 import borrowBook from '@/http/controllers/stock/borrowBook'
 import returnBook from '@/http/controllers/stock/returnBook'
 import reserveBook from '@/http/controllers/stock/reserveBook'
+import cancelReservation from '@/http/controllers/stock/cancelReservation'
 
 const stockRoutes = {
   '/stock': {
@@ -19,6 +20,9 @@ const stockRoutes = {
   },
   '/stock/reserve/:bookId': {
     PUT: reserveBook,
+  },
+  '/stock/cancel-reservation/:bookId': {
+    PUT: cancelReservation,
   },
 }
 
