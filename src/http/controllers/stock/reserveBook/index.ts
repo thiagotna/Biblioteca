@@ -1,13 +1,13 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { parse } from 'url'
-import makeReturnBook from '@/factory/StockFatory/makeReturnBook'
+import makeReserveBook from '@/factory/StockFatory/makeReserveBook'
 
-export default async function returnBook(
+export default async function reserveBook(
   request: IncomingMessage,
   response: ServerResponse,
 ) {
   try {
-    const returnBookFactory = makeReturnBook()
+    const makeReserveBookFactory = makeReserveBook()
     const parsedUrl = parse(decodeURIComponent(request.url as string), true)
     const bookId = decodeURIComponent(
       parsedUrl.pathname?.split('/').pop() || '',
@@ -20,14 +20,14 @@ export default async function returnBook(
       return
     }
 
-    const returnedBook = await returnBookFactory.execute(bookId)
+    const reservedBook = await makeReserveBookFactory.execute(bookId)
 
     response.statusCode = 200
     response.setHeader('Content-Type', 'application/json')
-    response.end(JSON.stringify(returnedBook))
+    response.end(JSON.stringify(reservedBook))
   } catch (error) {
     response.statusCode = 500
     response.setHeader('Content-Type', 'application/json')
-    response.end(JSON.stringify({ message: 'Error returning book' }))
+    response.end(JSON.stringify({ message: 'Error reserving book' }))
   }
 }

@@ -13,7 +13,7 @@ export default class BorrowBookUseCase {
       )
       const book = await getBookFromStock.execute(bookId)
 
-      if (!book || book.available < 1) {
+      if (book.available < 1) {
         console.log('Book not available')
         return null
       }
