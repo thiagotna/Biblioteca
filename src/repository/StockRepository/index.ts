@@ -75,7 +75,7 @@ export default class StockRepository implements IStockRepository {
 
   async deleteBookFromStock(bookId: string): Promise<IStock> {
     try {
-      const deletedBook = await Stock.findOneAndDelete({ bookId })
+      const deletedBook = await Stock.findOneAndDelete({ book_id: bookId })
       return deletedBook
     } catch (error) {
       throw new Error(`Error deleting book: ${error}`)
